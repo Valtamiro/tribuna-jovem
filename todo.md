@@ -1,6 +1,6 @@
 # Projeto TODO
 
-- [x] Definir a identidade editorial acolhedora, educativa e acessível do Voz Delas.
+- [x] Definir a identidade editorial acolhedora, educativa e acessível da Tribuna Jovem.
 - [x] Criar navegação pública responsiva para Início, Edições, Entrevistas, Galeria e Apoio.
 - [x] Construir a página inicial com destaques, apresentação do projeto e encaminhamentos seguros.
 - [x] Criar página pública de edições do jornal com busca visual e visualização de PDF por URL.
@@ -19,3 +19,5 @@
 - [x] Adicionar testes integrados para confirmar que consultas públicas retornam apenas conteúdos publicados.
 - [x] Adicionar testes integrados para criação, publicação e retirada de publicação, incluindo a limpeza de data de publicação.
 - [x] Adicionar testes integrados para retirada de publicação em matérias e entrevistas, com limpeza de data de publicação.
+- [x] Atualizar a identidade e todos os textos de marca de Tribuna Jovem.
+- [x] Atualizar os metadados remanescentes de marca e verificar se não há referências públicas ao nome anterior.

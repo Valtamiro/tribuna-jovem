@@ -1,6 +1,6 @@
-# Guia do Voz Delas
+# Guia da Tribuna Jovem
 
-Este guia explica como usar o **Voz Delas** no dia a dia da redação escolar, abrir o código no VS Code, guardar o projeto no GitHub e publicar a aplicação de forma compatível com a área de login, o banco de dados e o envio de arquivos.
+Este guia explica como usar a **Tribuna Jovem** no dia a dia da redação escolar, abrir o código no VS Code, guardar o projeto no GitHub e publicar a aplicação de forma compatível com a área de login, o banco de dados e o envio de arquivos.
 
 > **Importante:** o jornal é público, mas o painel **Redação** é privado. Somente contas aprovadas como administradoras conseguem cadastrar, editar ou publicar conteúdos.
 
@@ -78,14 +78,14 @@ O código foi estruturado como uma aplicação completa: React no site, servidor
 
 ## 7. Versionar o projeto no GitHub
 
-Crie um repositório vazio no GitHub, por exemplo `jornal-voz-delas`. Em seguida, no terminal do VS Code, execute os comandos abaixo, substituindo o endereço pelo endereço do seu repositório.
+Crie um repositório vazio no GitHub, por exemplo `tribuna-jovem`. Em seguida, no terminal do VS Code, execute os comandos abaixo, substituindo o endereço pelo endereço do seu repositório.
 
 ```bash
 git init
 git add .
-git commit -m "Cria o site Voz Delas"
+git commit -m "Cria o site Tribuna Jovem"
 git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/jornal-voz-delas.git
+git remote add origin https://github.com/SEU-USUARIO/tribuna-jovem.git
 git push -u origin main
 ```
 
@@ -105,7 +105,7 @@ O **GitHub Pages** hospeda arquivos estáticos — HTML, CSS e JavaScript — pu
 | --- | --- | --- |
 | Guardar o código gratuitamente | GitHub | Use para histórico, colaboração e cópia de segurança do projeto. |
 | Publicar uma versão somente estática | GitHub Pages | Exigiria retirar ou separar a área de login, banco e painel editorial.[1] |
-| Publicar o Voz Delas completo | Ambiente de aplicação com servidor, banco, autenticação e armazenamento | Mantenha a versão atual no ambiente de publicação da aplicação. |
+| Publicar a Tribuna Jovem completa | Ambiente de aplicação com servidor, banco, autenticação e armazenamento | Mantenha a versão atual no ambiente de publicação da aplicação. |
 
 Para publicar a versão completa que foi construída, crie primeiro um ponto de versão do projeto e então use o botão **Publish/Publicar** da interface do projeto. O código pode continuar sincronizado no GitHub para que a equipe use o VS Code e mantenha o histórico. Não é recomendável tentar colocar esta mesma aplicação completa no GitHub Pages: o painel deixaria de acessar as rotas do servidor e os recursos de login, publicação e envio de arquivos não funcionariam.
 

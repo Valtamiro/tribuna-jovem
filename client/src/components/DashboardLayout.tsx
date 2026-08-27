@@ -1,46 +1,13 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { BookOpen, LogOut, PencilLine } from "lucide-react";
 import type { ReactNode } from "react";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { loading, user, logout } = useAuth();
-
   if (loading) return <div className="min-h-screen bg-[#f8f4ea]" />;
   if (!user) return <main className="grid min-h-screen place-items-center bg-[#f8f4ea] p-5"><section className="max-w-md border border-[#73574788] bg-[#fdfaf3] p-8 text-center"><BookOpen className="mx-auto text-[#743a3d]" /><h1 className="editorial-title mt-5 text-3xl font-bold">Entre para continuar</h1><p className="mt-3 text-sm leading-6 text-[#5c4b43]">Esta área é exclusiva da redação.</p><Button className="mt-6" onClick={() => startLogin()}>Entrar</Button></section></main>;
-
-  return <SidebarProvider>
-    <Sidebar collapsible="icon" className="border-r border-[#73574766]">
-      <SidebarHeader className="border-b border-[#73574766] p-3">
-        <a href="/" className="flex items-center gap-3 px-2 py-2 text-[#2d241f]"><span className="grid size-8 place-items-center rounded-full border border-[#623536]"><PencilLine size={15} className="text-[#623536]" /></span><span className="editorial-title text-xl font-bold group-data-[collapsible=icon]:hidden">Voz Delas</span></a>
-      </SidebarHeader>
-      <SidebarContent className="pt-3">
-        <SidebarMenu className="px-2">
-          <SidebarMenuItem><SidebarMenuButton asChild isActive tooltip="Painel editorial"><a href="/editorial"><BookOpen /><span>Painel editorial</span></a></SidebarMenuButton></SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarContent>
-      <SidebarFooter className="border-t border-[#73574766] p-3">
-        <p className="mb-3 truncate px-2 text-xs text-[#6b584b] group-data-[collapsible=icon]:hidden">{user.name || "Redação"}</p>
-        <SidebarMenu><SidebarMenuItem><SidebarMenuButton onClick={logout} tooltip="Sair" className="text-[#743a3d]"><LogOut /><span>Sair</span></SidebarMenuButton></SidebarMenuItem></SidebarMenu>
-      </SidebarFooter>
-    </Sidebar>
-    <SidebarInset className="bg-[#f8f4ea]">
-      <header className="flex h-16 items-center justify-between border-b border-[#73574766] bg-[#f8f4eacc] px-4 backdrop-blur"><div className="flex items-center gap-3"><SidebarTrigger aria-label="Alternar navegação" /><span className="editorial-kicker text-[#743a3d]">Área de publicação</span></div><a href="/" className="text-sm font-semibold underline underline-offset-4">Jornal público</a></header>
-      <main className="p-4 md:p-7">{children}</main>
-    </SidebarInset>
-  </SidebarProvider>;
+  return <SidebarProvider><Sidebar collapsible="icon" className="border-r border-[#73574766]"><SidebarHeader className="border-b border-[#73574766] p-3"><a href="/" className="flex items-center gap-3 px-2 py-2 text-[#2d241f]"><span className="grid size-8 place-items-center rounded-full border border-[#623536]"><PencilLine size={15} className="text-[#623536]" /></span><span className="editorial-title text-xl font-bold group-data-[collapsible=icon]:hidden">Tribuna Jovem</span></a></SidebarHeader><SidebarContent className="pt-3"><SidebarMenu className="px-2"><SidebarMenuItem><SidebarMenuButton asChild isActive tooltip="Painel editorial"><a href="/editorial"><BookOpen /><span>Painel editorial</span></a></SidebarMenuButton></SidebarMenuItem></SidebarMenu></SidebarContent><SidebarFooter className="border-t border-[#73574766] p-3"><p className="mb-3 truncate px-2 text-xs text-[#6b584b] group-data-[collapsible=icon]:hidden">{user.name || "Redação"}</p><SidebarMenu><SidebarMenuItem><SidebarMenuButton onClick={logout} tooltip="Sair" className="text-[#743a3d]"><LogOut /><span>Sair</span></SidebarMenuButton></SidebarMenuItem></SidebarMenu></SidebarFooter></Sidebar><SidebarInset className="bg-[#f8f4ea]"><header className="flex h-16 items-center justify-between border-b border-[#73574766] bg-[#f8f4eacc] px-4 backdrop-blur"><div className="flex items-center gap-3"><SidebarTrigger aria-label="Alternar navegação" /><span className="editorial-kicker text-[#743a3d]">Área de publicação</span></div><a href="/" className="text-sm font-semibold underline underline-offset-4">Jornal público</a></header><main className="p-4 md:p-7">{children}</main></SidebarInset></SidebarProvider>;
 }
-

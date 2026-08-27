@@ -1,6 +1,6 @@
 # Referências e decisões de conteúdo
 
-O **Voz Delas** adotará linguagem educativa, respeitosa e não sensacionalista. A página de apoio explicará que o jornal não substitui serviços de emergência, saúde, assistência social ou orientação jurídica individual.
+O **Tribuna Jovem** adotará linguagem educativa, respeitosa e não sensacionalista. A página de apoio explicará que o jornal não substitui serviços de emergência, saúde, assistência social ou orientação jurídica individual.
 
 Em situações de violência em curso ou de risco imediato, a página encaminhará para o telefone **190**. Para acolhimento, orientação sobre direitos, informação sobre a rede de atendimento e registro de denúncias, indicará o **Ligue 180**, serviço público gratuito disponível 24 horas por dia. A referência oficial também informa acesso por WhatsApp no número **(61) 9610-0180**.
 
