@@ -1,33 +1,23 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import { PublicPage } from "@/components/SiteHeader";
+import { trpc } from "@/lib/trpc";
+import { ArrowUpRight, BookOpen, FileText, Image, MessageCircle, ShieldCheck } from "lucide-react";
+import { Link } from "wouter";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Workflow, Frontend Best Practices, Design Guide and Common Pitfalls
- */
+function formatDate(date: Date | string | null) { return date ? new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(date)) : "Em preparação"; }
+
 export default function Home() {
-  // The useAuth hook provides authentication state.
-  // To implement login/logout, call logout(), or start login from an event
-  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
-  // startLogin() during render (no href={startLogin()}) — it mints a one-time
-  // nonce cookie and must run only at the moment of navigation.
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
-
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
-  );
+  const { data, isLoading } = trpc.editorial.public.home.useQuery();
+  return <PublicPage>
+    <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-16 pt-14 lg:grid-cols-[1.5fr_0.8fr] lg:px-8 lg:pb-24 lg:pt-20">
+      <div className="rise-in"><p className="editorial-kicker text-[#743a3d]">Informação é cuidado coletivo</p><h1 className="editorial-title mt-4 max-w-4xl text-5xl font-bold leading-[0.92] sm:text-7xl lg:text-[6.25rem]">Vozes que <em className="font-normal">informam,</em> escutam e transformam.</h1><div className="mt-7 grid max-w-xl grid-cols-[auto_1fr] gap-4 border-t border-[#73574788] pt-5"><span className="editorial-title text-4xl text-[#743a3d]">01</span><p className="text-base leading-7 text-[#5c4b43]">Um jornal criado na escola para abrir conversas sobre respeito, direitos e enfrentamento à violência contra a mulher — com produção responsável dos estudantes.</p></div><div className="mt-8 flex flex-wrap gap-3"><Link href="/edicoes" className="inline-flex items-center gap-2 bg-[#623536] px-5 py-3 text-sm font-bold text-[#fffaf1] transition-colors hover:bg-[#4f292b]">Ler as edições <ArrowUpRight size={17} /></Link><Link href="/apoio" className="inline-flex items-center gap-2 border border-[#623536] px-5 py-3 text-sm font-bold text-[#623536] transition-colors hover:bg-[#e9ddc5]">Onde buscar apoio</Link></div></div>
+      <aside className="rise-in-delay relative border-l border-[#73574788] pl-6 lg:mt-11"><div className="absolute -left-[5px] top-0 size-2 rounded-full bg-[#743a3d]" /><p className="editorial-kicker text-[#743a3d]">Manifesto da redação</p><p className="editorial-title mt-5 text-3xl font-medium leading-tight">“Falar com respeito é uma forma de proteger.”</p><p className="mt-5 text-sm leading-7 text-[#5c4b43]">Esta publicação valoriza a escuta, recusa culpabilizar vítimas e procura ampliar o conhecimento sobre as redes de apoio.</p><div className="mt-10 grid gap-px border border-[#73574766] bg-[#73574766] sm:grid-cols-3 lg:grid-cols-1"><Stat label="Edições" value={data?.latestEditions.length ?? 0} /><Stat label="Matérias" value={data?.latestStories.length ?? 0} /><Stat label="Entrevistas" value={data?.latestInterviews.length ?? 0} /></div></aside>
+    </section>
+    <section className="border-y border-[#73574766] bg-[#eee4d1cc]"><div className="mx-auto grid max-w-7xl gap-px px-5 py-px sm:grid-cols-3 lg:px-8"><PathCard icon={<BookOpen />} title="Edições" text="Jornais em PDF, organizados para leitura e consulta." href="/edicoes" /><PathCard icon={<MessageCircle />} title="Entrevistas" text="Vídeos e textos que aproximam diferentes vozes." href="/entrevistas" /><PathCard icon={<Image />} title="Galeria" text="Imagens e documentos da produção da turma." href="/galeria" /></div></section>
+    <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24"><div className="flex flex-col justify-between gap-5 border-b border-[#73574788] pb-6 sm:flex-row sm:items-end"><div><p className="editorial-kicker text-[#743a3d]">O que está em pauta</p><h2 className="editorial-title mt-2 text-4xl font-bold sm:text-5xl">Produções recentes</h2></div><Link href="/edicoes" className="text-sm font-bold underline underline-offset-4">Ver todas as publicações</Link></div>{isLoading ? <div className="mt-8 grid gap-5 md:grid-cols-3">{[1, 2, 3].map(key => <div key={key} className="h-56 animate-pulse bg-[#e9ddc5]" />)}</div> : data?.latestStories?.length ? <div className="mt-8 grid gap-5 md:grid-cols-3">{data.latestStories.map((story, index) => <article key={story.id} className={`border-t-4 ${index === 0 ? "border-[#743a3d]" : "border-[#a8875b]"} pt-4`}><p className="editorial-kicker text-[#743a3d]">{story.category}</p><h3 className="editorial-title mt-3 text-3xl font-bold leading-tight">{story.title}</h3><p className="mt-3 text-sm leading-6 text-[#5c4b43]">{story.summary}</p><p className="mt-5 text-xs font-bold tracking-[0.08em] uppercase text-[#745d4d]">Por {story.authorName} · {formatDate(story.publishedAt)}</p></article>)}</div> : <EmptyRecent />}</section>
+    <section className="mx-auto max-w-7xl px-5 pb-2 lg:px-8"><div className="grid gap-7 border border-[#73574788] bg-[#f8f4ea] p-6 md:grid-cols-[auto_1fr_auto] md:items-center md:p-8"><ShieldCheck className="size-10 text-[#743a3d]" /><div><p className="editorial-kicker text-[#743a3d]">Apoio e orientação</p><h2 className="editorial-title mt-1 text-3xl font-bold">Você não está sozinha.</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-[#5c4b43]">Em emergência ou risco imediato, ligue 190. Para acolhimento e informações sobre direitos e serviços, procure o Ligue 180.</p></div><Link href="/apoio" className="inline-flex w-fit items-center gap-2 border border-[#623536] px-4 py-3 text-sm font-bold text-[#623536]">Acessar apoio <ArrowUpRight size={17} /></Link></div></section>
+  </PublicPage>;
 }
+
+function Stat({ value, label }: { value: number; label: string }) { return <div className="bg-[#f8f4ea] p-3"><p className="editorial-title text-3xl font-bold">{value}</p><p className="editorial-kicker mt-1 text-[#745d4d]">{label}</p></div>; }
+function PathCard({ icon, title, text, href }: { icon: React.ReactNode; title: string; text: string; href: string }) { return <Link href={href} className="group bg-[#eee4d1] p-7 transition-colors hover:bg-[#e5d6bb]"><span className="text-[#743a3d]">{icon}</span><h2 className="editorial-title mt-8 text-3xl font-bold">{title}</h2><p className="mt-2 text-sm leading-6 text-[#5c4b43]">{text}</p><span className="mt-6 inline-block text-sm font-bold underline underline-offset-4 group-hover:text-[#743a3d]">Conhecer <span aria-hidden="true">→</span></span></Link>; }
+function EmptyRecent() { return <div className="mt-8 border border-dashed border-[#73574788] p-8"><FileText className="text-[#743a3d]" /><h3 className="editorial-title mt-5 text-3xl font-bold">A primeira produção está a caminho.</h3><p className="mt-2 max-w-xl text-sm leading-6 text-[#5c4b43]">Quando a redação publicar uma matéria, ela aparecerá nesta seção. O jornal cresce com as pesquisas, entrevistas e textos da turma.</p></div>; }

@@ -1,0 +1,21 @@
+# Projeto TODO
+
+- [x] Definir a identidade editorial acolhedora, educativa e acessível do Voz Delas.
+- [x] Criar navegação pública responsiva para Início, Edições, Entrevistas, Galeria e Apoio.
+- [x] Construir a página inicial com destaques, apresentação do projeto e encaminhamentos seguros.
+- [x] Criar página pública de edições do jornal com busca visual e visualização de PDF por URL.
+- [x] Criar página de entrevistas com vídeos e textos produzidos pelos estudantes.
+- [x] Criar galeria pública de imagens e documentos enviados pela turma.
+- [x] Implementar banco de dados para edições, matérias, entrevistas e materiais da galeria.
+- [x] Implementar login por conta Manus e restringir o painel aos integrantes administradores da redação.
+- [x] Criar painel editorial para cadastrar, editar, publicar e retirar conteúdos de publicação.
+- [x] Implementar envio seguro de imagens e PDFs ao armazenamento, salvando URLs e metadados no banco.
+- [x] Criar estados de carregamento, ausência de conteúdo e mensagens de erro compreensíveis.
+- [x] Validar semântica, contraste, foco de teclado e responsividade em celular e computador.
+- [x] Escrever testes automatizados para regras de publicação e autorização.
+- [x] Produzir guia em português para VS Code, GitHub e hospedagem gratuita compatível com autenticação e dados dinâmicos.
+- [x] Implementar busca visual na página pública de edições e cobrir o estado sem resultados.
+- [x] Adicionar testes automatizados para listagens públicas e transição entre rascunho e publicação.
+- [x] Adicionar testes integrados para confirmar que consultas públicas retornam apenas conteúdos publicados.
+- [x] Adicionar testes integrados para criação, publicação e retirada de publicação, incluindo a limpeza de data de publicação.
+- [x] Adicionar testes integrados para retirada de publicação em matérias e entrevistas, com limpeza de data de publicação.
