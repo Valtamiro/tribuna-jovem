@@ -21,3 +21,4 @@
 - [x] Adicionar testes integrados para retirada de publicação em matérias e entrevistas, com limpeza de data de publicação.
 - [x] Atualizar a identidade e todos os textos de marca de Tribuna Jovem.
 - [x] Atualizar os metadados remanescentes de marca e verificar se não há referências públicas ao nome anterior.
+- [x] Atualizar o guia com o passo a passo de GitHub e hospedagem gratuita da Tribuna Jovem.

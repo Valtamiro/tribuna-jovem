@@ -111,6 +111,56 @@ Para publicar a versão completa que foi construída, crie primeiro um ponto de 
 
 > Se a escola quiser usar outro provedor de aplicação, será necessário configurar servidor Node.js, banco de dados, armazenamento, autenticação e variáveis de ambiente nesse provedor. Essa é uma migração técnica diferente de ativar o GitHub Pages.
 
+### 8.1. Endereço público atual
+
+A versão publicada da Tribuna Jovem está disponível em **https://vozdelas-x9fmsctn.manus.space**. Apesar de o endereço automático ainda trazer o prefixo anterior, a identidade apresentada no site já é **Tribuna Jovem**. Você pode compartilhar esse endereço com a comunidade escolar.
+
+Para alterar o início desse endereço, abra as configurações do projeto, entre em **Domínios** e procure a opção de editar o prefixo do domínio automático. Caso a escola já tenha um domínio próprio, a mesma área permite iniciar a vinculação.
+
+### 8.2. Colocar o código no GitHub pelo VS Code
+
+Primeiro, no painel do projeto, abra **Código** e escolha baixar os arquivos. Descompacte o arquivo em uma pasta no computador, por exemplo `Documentos/tribuna-jovem`. Em seguida, abra o VS Code, selecione **Arquivo → Abrir Pasta** e escolha essa pasta.
+
+No GitHub, clique no sinal de **+**, escolha **New repository**, informe o nome `tribuna-jovem`, escolha se o repositório será privado ou público e clique em **Create repository**. Para este projeto escolar, é recomendável começar como privado enquanto a redação organiza os conteúdos. Não marque a opção de criar README, `.gitignore` ou licença, pois o projeto já possui seus próprios arquivos.
+
+Abra o terminal integrado do VS Code pelo menu **Terminal → Novo Terminal** e execute os comandos abaixo. Troque `SEU-USUARIO` pelo seu nome de usuário no GitHub.
+
+```bash
+git init
+git add .
+git commit -m "Cria o site Tribuna Jovem"
+git branch -M main
+git remote add origin https://github.com/SEU-USUARIO/tribuna-jovem.git
+git push -u origin main
+```
+
+Quando o GitHub pedir autorização, faça login no navegador ou siga a instrução exibida pelo terminal. Ao terminar, atualize a página do repositório no GitHub; todos os arquivos do site devem aparecer.
+
+### 8.3. Atualizar o GitHub após mudar o código
+
+Depois de fazer alterações no VS Code, valide o projeto e envie uma nova versão ao GitHub. Escreva uma mensagem curta que descreva a mudança feita.
+
+```bash
+pnpm check
+pnpm test
+git add .
+git commit -m "Atualiza conteúdo da Tribuna Jovem"
+git push
+```
+
+Se o comando `git push` indicar que existem alterações no GitHub que ainda não estão no seu computador, execute `git pull --rebase origin main` e tente `git push` novamente. Sempre confira os arquivos modificados antes de usar `git add .`, principalmente para não enviar dados pessoais de estudantes ou arquivos de configuração confidenciais.
+
+### 8.4. Publicar gratuitamente a versão completa
+
+O repositório no GitHub guarda o código, mas o endereço público completo da Tribuna Jovem continua sendo publicado pela própria aplicação, pois ela precisa do servidor, banco de dados, login e armazenamento. Após fazer uma mudança no ambiente do projeto, crie uma nova versão e clique em **Publish/Publicar** no canto superior direito. Não é necessário configurar GitHub Pages para esse fluxo.
+
+| Etapa | Onde fazer | Resultado |
+| --- | --- | --- |
+| Editar arquivos | VS Code | Você altera o código localmente. |
+| Guardar o histórico | GitHub | Você mantém uma cópia organizada do projeto. |
+| Publicar o site completo | Painel da aplicação → Publish/Publicar | O jornal fica disponível com login, banco e arquivos. |
+| Compartilhar com a comunidade | Link público do site | Estudantes, famílias e equipe escolar acessam as páginas públicas. |
+
 ## 9. Boas práticas de acessibilidade e cuidado
 
 O site possui navegação por teclado, atalho “Ir para o conteúdo principal”, foco visível, estrutura de títulos e layout responsivo. Ao adicionar conteúdos, preserve essas qualidades: escreva textos alternativos que descrevam as imagens, ofereça transcrição para cada entrevista em vídeo, use títulos claros e verifique se links indicam seu destino.
